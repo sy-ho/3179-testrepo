@@ -21,7 +21,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/sy-ho/3179-testrepo/main/Week9_HW/data/AviationData.csv"
+        "url": "https://raw.githubusercontent.com/sy-ho/vega_lite/main/Week9_HW/data/AviationData.csv"
       },
       "mark": "circle", 
 
