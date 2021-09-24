@@ -1,0 +1,41 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 500,
+  "title": "The NTSB Aviation Accident from 1993 to 2020",
+  "projection": {"type": "equalEarth"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/sy-ho/3179-testrepo/main/Week9_HW/airplane.geo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "airplane.geo"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "lightgray",
+        "stroke": "white"
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/sy-ho/3179-testrepo/main/Week9_HW/data/AviationData.csv"
+      },
+      "mark": "circle",
+      "encoding": {
+        "longitude": {
+          "field": "Longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "Latitude",
+          "type": "quantitative"
+        },
+        "size": {"value": 10},
+        "color": {"value": "purple"}
+      }
+    }
+  ]
+}

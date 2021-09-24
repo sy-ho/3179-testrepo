@@ -1,0 +1,76 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 500,
+    "title": "The NTSB Aviation Accident from 1993 to 2020",
+    "projection": {"type": "equalEarth"},
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/sy-ho/3179-testrepo/main/Week9_HW/airplane.geo.json",
+          "format": {
+            "type": "topojson",
+            "feature": "airplane.geo"
+          }
+        },
+        "mark": {
+          "type": "geoshape",
+          "fill": "lightgray",
+          "stroke": "white"
+        }
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/sy-ho/3179-testrepo/main/Week9_HW/data/AviationData.csv"
+        },
+        "mark": "circle",
+        "encoding": {
+          "longitude": {
+            "field": "Longitude",
+            "type": "quantitative"
+          },
+          "latitude": {
+            "field": "Latitude",
+            "type": "quantitative"
+          },
+          "size": {"value": 10},
+          "color": {
+            "field": "Aircraft.Category",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Airplane",
+                "Balloon",
+                "Blimp",
+                "Glider",
+                "Gyrocraft",
+                "Gyroplane",
+                "Helicopter",
+                "Powered Parachute",
+                "Powered-Lift",
+                "Rocket",
+                "Ultralight",
+                "Weight-Shift",
+                "Unknown"
+              ],
+              "range": [
+                "rgb(137,78,36)",
+                "rgb(220,36,30)",
+                "rgb(255,206,0)",
+                "rgb(1,114,41)",
+                "rgb(0,175,173)",
+                "rgb(215,153,175)",
+                "rgb(106,114,120)",
+                "rgb(114,17,84)",
+                "rgb(0,0,0)",
+                "rgb(0,24,168)",
+                "rgb(0,160,226)",
+                "rgb(106,187,170)",
+                "rgb(156,106,187)"
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
