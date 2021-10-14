@@ -42,7 +42,7 @@ body, html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('image/crash.jpg');
+  background-image: url('crash.jpg');
   min-height: 100%;
 }
 .wrap {
