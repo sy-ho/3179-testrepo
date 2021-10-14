@@ -1,0 +1,154 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "https://raw.githubusercontent.com/sy-ho/vega_lite/main/Project2/data/AviationDataCleaning.csv"},
+    "params": [{
+        "name": "Top_k_Make",
+        "value": 5,
+        "bind": {
+            "input": "select","options": ["20","15","10","5","3"],
+            "labels":["Top 20","Top 15","Top 10","Top 5","Top 3"],
+            "name": "Make Rank: " }
+   },
+   {
+        "name": "Top_k_Model",
+        "value": 10,
+        "bind": {
+            "input": "select","options": ["20","15","10","5","3"],
+            "labels":["Top 20","Top 15","Top 10","Top 5","Top 3"],
+            "name": "Model Rank: " }
+   }], 
+  "hconcat": [
+  {
+      "width": 400,
+      "height": 600,
+      "title": {"text": "Aviation Accidents by Make"},
+      "layer": [
+        {
+          "params": [
+            {
+              "name": "sel_make",
+              "select": {"type": "point", "fields": ["Make"]}
+            },
+              {"name": "highlight","select": {"type": "point", "on": "mouseover"}
+    }
+          ],
+           "transform": [
+            {"field": "Amateur_Built", "equal": "No"},
+            {"filter": {"param": "sel_model"}},
+            {"filter": {"field": "Continent_Name", "equal": "North America"}},
+            {
+              "aggregate": [{
+              "op": "count",
+              "field": "Make",
+              "as": "Num_of_case"
+              }],
+              "groupby": ["Make"]
+            },
+            {
+              "window": [{
+                "op": "rank",
+                "as": "rank"
+              }],
+              "sort": [{ "field": "Num_of_case", "order": "descending" }]
+            }, {
+              "filter": "datum.rank <= Top_k_Make"
+            },
+            {"calculate": "split(datum.Make, ' ')", "as": "Y"}
+          ],
+          "mark": {"type": "bar","fill":"#a2a7b1","stroke": "black","cursor": "pointer"},
+          "encoding": {
+            "tooltip": [  {"field": "Make", "type": "nominal","title":"Make"},
+              {"field": "Num_of_case", "type": "quantitative","title":"Number of accident"}
+            ],
+            "x": {"field": "Num_of_case", "type": "quantitative","title":"Number of Aviation Accident"},
+             "y": {
+        "sort": {"field": "Num_of_case", "order": "descending"},
+        "field": "Y", "type": "ordinal","title":null},
+        "fillOpacity": {
+                "condition": {"param": "sel_make", "value": 1},
+                "value": 0.3
+          },
+            "color": {"field": "rank","legend": false},
+            "strokeWidth": {
+              "condition": [
+                {"param": "sel_make", "empty": false, "value": "2"},
+                {"param": "sel_model", "empty": false, "value": "2"},
+                {"param": "highlight","empty": false,"value": 1 }
+              ],
+              "value": "0.5"
+            },
+            "stroke": {"value": "black"}
+          }
+        }
+      ]
+    },
+    {
+      "width": 400,
+      "height":600,
+      "title": {"text": "Aviation Accident by Model "},
+      "layer": [
+        {
+          "params": [
+            {
+              "name": "sel_model",
+              "select": {"type": "point", "fields": ["Model"]}
+            },
+             {
+               "name": "highlight_2",
+               "select": {"type": "point", "on": "mouseover"} }
+          ],
+          "transform": [
+            {"field": "Amateur_Built", "equal": "No"},
+            {"filter": {"param": "sel_make"}},
+          {"filter": {"field": "Continent_Name", "equal": "North America"}},
+          {
+              "aggregate": [{
+                "op": "count",
+                "field": "Model ",
+                "as": "Num_of_case"
+              }],
+              "groupby": ["Model"]
+            },
+            {
+              "window": [{
+                "op": "rank",
+                "as": "rank"
+              }],
+              "sort": [{ "field": "Num_of_case", "order": "descending" }]
+            }, {
+              "filter": "datum.rank <= Top_k_Model"
+            }
+          ],
+          "mark": {"type": "bar","fill":"#a2a7b1","stroke": "black","cursor": "pointer"},
+          "encoding": {
+          "tooltip": [  {"field": "Model", "type": "nominal","title":"Model"},
+            {"field": "Num_of_case", "aggregate": "sum","title":"Number of accident"}
+            ],
+          "x": {"field": "Num_of_case", "type": "quantitative", "title":"Number of Aviation Accident"}, 
+          "y": {
+           "sort": {"field": "Num_of_case", "order": "descending"},
+           "field": "Model", "type": "ordinal","title":null},
+           "fillOpacity": {
+             "condition": {"param": "sel_model", "value": 1},
+             "value": 0.3},
+            "color": {"field": "rank","legend": false},
+            "strokeWidth": {
+              "condition": [
+                {"param": "sel_make", "empty": false, "value": "2"},
+                {"param": "sel_model", "empty": false, "value": "2"},
+                {"param": "highlight_2","empty": false,"value": 1 }
+              ],
+              "value": "0.5"
+            },
+            "stroke": {"value": "black"}
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "facet": {"spacing": 3},
+    "title": {"font": "sans-serif", "fontSize": 14},
+    "bar": {"cornerRadius": 3}
+  }
+}

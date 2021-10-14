@@ -1,0 +1,21 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 400,
+    "height": 300,
+    "title": "The Aviation injuris from 2000 to 2020",
+    "data": {
+        "url": "https://raw.githubusercontent.com/sy-ho/vega_lite/main/Project2/data/AviationDataCleaning.csv"
+    },
+    "transform": [{"fold": ["Total_Fatal_Injuries", "Total_Serious_Injuries","Total_Minor_Injuries"]}],
+    "mark": {"type": "line"},
+    "encoding": {
+        "tooltip":[
+            {"timeUnit": "year", "field": "Event_Date", "type" : "ordinal", "title":"Year"},
+            {"aggregate":"sum", "field": "value", "type": "quantitative","title":"Number of death"}],
+     "x": {"timeUnit": "year", "title": "Year", "field": "Event_Date"},
+     "y": {"aggregate":"sum", "field": "value", "type": "quantitative","title":"","scale":{"domain": [0, 500]}},
+     "color": {"field":"key","type": "nominal","title":"Injury Severity"}}
+    
+   
+}
+  

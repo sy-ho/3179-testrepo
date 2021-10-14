@@ -1,0 +1,64 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 300,
+  "title": "Top Manufacturing Companies in Aviation Accident",
+  "data": {
+    "url": "https://raw.githubusercontent.com/sy-ho/vega_lite/main/Project2/data/AviationDataCleaning.csv"
+},  
+"params": [
+  {
+    "name": "Top_k",
+    "value": 5,
+    "bind": {
+    "input": "select",
+    "options": [
+        "15",
+        "10",
+        "5",
+        "3"
+  ],
+  "labels":[
+      "Top 15",
+      "Top 10",
+      "Top 5",
+      "Top 3"
+  ],
+  "name": "Top K Selection: "
+  }
+  }
+  ],
+ "transform": [
+  {"field": "Amateur_Built", "equal": "No"},
+   {"filter": {"field": "Continent_Name", "equal": "North America"}},
+   {
+    "aggregate": [{
+     "op": "count",
+     "field": "Make",
+     "as": "Num_of_case"
+    }],
+    "groupby": ["Make"]
+  },
+  {
+    "window": [{
+      "op": "rank",
+      "as": "rank"
+    }],
+    "sort": [{ "field": "Num_of_case", "order": "descending" }]
+  }, {
+    "filter": "datum.rank <= Top_k"
+  }
+],
+    "mark": "bar",
+    "encoding": {
+      "x": {"field": "Num_of_case", "type": "quantitative","title":"Number of Aviation Accident"},
+      "y": {
+        "sort": {"field": "Num_of_case", "order": "descending"},
+        "field": "Make", "type": "ordinal","title":null},
+        "color": {
+          "field": "rank",
+          "scale": {"range": ["#a8a8a8"]},
+          "legend": null
+        }
+    }
+}

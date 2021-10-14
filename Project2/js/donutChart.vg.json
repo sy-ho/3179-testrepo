@@ -1,0 +1,54 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 400,
+    "title": "The Flight Purpose of Aviation Accident",
+    "data": {
+        "url": "https://raw.githubusercontent.com/sy-ho/vega_lite/main/Project2/data/AviationDataCleaning.csv"
+    },   
+    "transform": [
+        {"filter": {"field": "Purpose_of_flight", "valid": false}},
+        {"filter": {"field": "Continent_Name", "equal": "North America"}},
+        {
+            "aggregate": [{
+             "op": "count",
+             "field": "Purpose_of_flight",
+             "as": "Num_of_case"
+            }],
+            "groupby": ["Purpose_of_flight"]
+        },
+        {
+          "window": [{"op": "rank", "as": "rank"}],
+          "sort": [{ "field": "Num_of_case", "order": "descending" }]
+        },
+        {
+          "calculate": "datum.rank < 5 ? datum.Purpose_of_flight : 'Others'", "as": "ranked_Cat"
+        }
+    ],
+    "mark": {"type": "arc", "innerRadius": 80},
+    "encoding": {
+      "theta": {"aggregate": "sum", "field": "Num_of_case", "type": "quantitative"},
+      "tooltip":[
+        {"field": "ranked_Cat", "type": "ordinal","title":"Purpose_of_flight"},
+        {"aggregate": "sum", "field": "Num_of_case", "type": "quantitative","title":"Aircraft Category"}
+      ],
+      "color": {
+        "field": "ranked_Cat",
+        "title": "Flight Purpose",
+        "type":"ordinal",
+        "scale": {
+        
+        "range": [
+            "#f5ecda",
+            "#bfb6a4",
+            "#59584c",
+            "#242621",
+            "#5e6668"
+      
+          ]
+    
+        }
+        }
+    }
+
+}

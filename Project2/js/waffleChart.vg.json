@@ -1,0 +1,72 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 350,
+  "height": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/sy-ho/vega_lite/main/Project2/data/WaffleChart.csv"
+  },
+  "params": [{
+  "name": "highlight",
+  "select": {"type": "point", "fields": ["Category"]},
+  "bind": "legend"
+}],
+  "layer": [
+    {
+      "mark": {
+        "type": "square",
+        "size": 500
+      },
+      "encoding": {
+        "x": {
+          "field": "Column",
+          "type": "quantitative",
+          "axis": null
+        },
+        "y": {
+          "field": "Row",
+          "type": "quantitative",
+          "axis": null
+        },
+        "color": {
+          "field": "Category",
+          "type": "nominal",
+          "scale": {
+            "type": "ordinal",
+            "domain": [
+              "Personal",
+              "Instructional",
+              "Aerial Application",
+              "Business",
+              "Others"
+            ],
+            "range": [                
+               "#0E1D35",
+               "#966A2C",
+               "#8F887F",
+               "#cb8b72",
+               "#d3c7b1"
+            ]
+          },
+          "legend":{
+            "labelFont": "sans-serif",
+            "labelFontSize": 14,
+            "titleFont":"sans-serif",
+            "title": "Flight Purpose",
+            "titleFontSize": 16
+          }
+        },    "opacity": {
+    "condition": {"param": "highlight", "value": 1},
+    "value": 0.2
+  },
+        "tooltip":[{"field": "Category"}]
+      }
+    }
+  ],
+  "config": {
+    "style": {
+      "cell": {
+        "stroke": "transparent"
+      }
+    }
+  }
+}

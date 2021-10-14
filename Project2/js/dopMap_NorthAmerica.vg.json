@@ -1,0 +1,55 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 500,
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/sy-ho/vega_lite/main/Project2/js/america.geo.json",
+          "format": {
+            "type": "topojson",
+            "feature": "america.geo"
+          }
+        },
+        "mark": {
+          "type": "geoshape",
+          "fill": "lightgrey",
+          "stroke": "grey"
+        },
+        "projection": {
+            "type": "equalEarth"
+          }
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/sy-ho/vega_lite/main/Project2/data/AviationDataCleaning.csv"
+        },
+        "transform": [
+            {"filter": {"field": "Continent_Name", "equal": "North America"}},
+            {"filter": {"field": "Aircraft_Category", "equal": "Airplane"}},
+            {"filter": {"field": "Total_Injuries", "gt": 0}}
+          ],
+        "mark": "circle",
+        "encoding": {
+          "longitude": {
+            "field": "Longitude",
+            "type": "quantitative"
+          },
+          "latitude": {
+            "field": "Latitude",
+            "type": "quantitative"
+          },
+          "tooltip": [
+            {"field": "State", "type": "nominal"},
+            {"field": "Country", "type": "nominal"},
+            {"field": "Total_Passengers", "type": "quantitative", "format": ","},
+            {"field": "Severality_Score", "type": "quantitative", "format": ".2f"}
+          ],
+          "size": {"value": 20},
+          "color": {"field": "Severality_Score", "type": "quantitative"}
+          }
+        }
+      
+    ]
+  }
+  

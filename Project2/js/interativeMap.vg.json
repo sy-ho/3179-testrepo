@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/sy-ho/vega_lite/main/Project2/data/AviationDataCleaning.csv"
+  },
+  "vconcat": [
+    {
+      "width": 800,
+      "height": 400,
+      "title": "Where Did the Aviation Accident Occur?",
+      "projection": {"type": "equalEarth"},
+      "layer": [
+        {
+          "data": {
+             "url": "https://raw.githubusercontent.com/sy-ho/vega_lite/main/Project2/js/america.geo.json",
+                "format": {
+                  "type": "topojson",
+                  "feature": "america.geo"
+            }
+          },
+          "mark": {"type": "geoshape", "fill": "#b0b19c", "stroke": "white"}
+        },
+        {
+          "transform": [
+            {"filter": {"field": "Continent_Name", "equal": "North America"}},
+            {"filter": {"param": "time_brush"}}          
+          ],
+          "encoding": {
+            "longitude": {"field": "Longitude", "type": "quantitative"},
+            "latitude": {"field": "Latitude", "type": "quantitative"},
+            "color": {
+              "field": "Severality_Score",
+              "title":"Severity Score ",
+              "type": "quantitative",
+              "scale": {
+                "type": "threshold",
+                "domain": [2, 4, 6, 8],
+                "range": ["#DCE1F2", "#bdc9e1", "#74a9cf", "#2b8cbe", "#0F344A"]
+              }
+            },
+  "tooltip": [ 
+            {"field": "State", "type": "nominal"},
+            {"field": "Country", "type": "nominal"},
+            {"timeUnit": "year","field": "Event_Date","title": "Year"},
+            {"field": "Severality_Score", "type": "quantitative", "format": ".2f","title":"Severity Score"}
+          ]
+          },
+          "layer": [
+            {"mark": {"type": "circle", "opacity": 0.6, "size": 20}},
+            {
+              "transform": [
+                {
+                  "window": [{"op": "rank", "as": "ranking"}],
+                  "sort": [{"field": "Severality_Score", "order": "descending"}]
+                },
+                {"filter": "datum.ranking == 1"},
+                {
+                  "calculate": "'The highest severity score of the selected period: ' + datum['Severality_Score']",
+                  "as": "text_annotation"
+                }
+              ],
+              "mark": {"type": "text", "align": "left", "dx": 4},
+              "encoding": {"text": {"field": "text_annotation"}}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 800,
+      "height": 60,
+      "mark": "line",
+      "title": "Filter out the data based on Year",
+      "params": [
+        {
+          "name": "time_brush",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }
+      ],
+      "transform": [
+        {"filter": {"field": "Continent_Name", "equal": "North America"}}    
+      ],
+      "encoding": {
+        "x": {
+          "field": "Event_Date",
+          "timeUnit": "yearmonth",
+          "axis": {"title": "", "format": "%Y"}
+        },
+        "y": {
+          "aggregate": "count",
+          "axis": {"tickCount": 3, "grid": false},
+          "scale": {"domain": [0, 100]},
+          "title": "Count"
+        }
+      }
+    },
+    {
+      "width": 800,
+      "transform": [
+
+        {"filter": {"field": "Continent_Name", "equal": "North America"}},
+        {"filter":{"timeUnit": "year", "field": "Event_Date", "gt": 1999}},
+        {
+          "bin": {"step": 2, "extent": [2, 8]},
+          "field": "Severality_Score",
+          "as": "magnitude"
+        }
+      ],
+      "mark": {"type":"area"},
+      "encoding": {
+        "x": {
+          "field": "Event_Date",
+          "timeUnit": "yearmonth",
+          "scale": {"domain": {"param": "time_brush"}},
+          "axis": {"title": "", "tickCount": 5, "grid": false}
+        },
+        "y": {"aggregate": "count", "title": "Count"},
+        "tooltip":[
+        {"field": "Event_Date", "timeUnit": "yearmonth", "type": "ordinal","title":"Date"},
+        {"field": "magnitude",  "type": "ordinal","title":"Severity class"},
+        {"aggregate": "count", "type": "quantitative","title":"Number of Case"}
+      ],
+        "color": {
+          "field": "magnitude",
+          "scale": {
+            "range": ["#DCE1F2", "#bdc9e1", "#74a9cf", "#2b8cbe", "#0F344A"]
+          },
+          "legend": null
+        }
+      }
+    }
+  ],
+  "config": {"title": {"font": "sans-serif", "fontSize": 14}}
+}
