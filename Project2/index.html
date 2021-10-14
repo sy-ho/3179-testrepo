@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<title>NTSB Aviation Accident</title>
+<link rel="icon" href="image/crash_icon.png">
+<meta charset="UTF-8">
+
+<!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+<!-- Import css -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+
+<!-- CSS file -->
+<link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="#home" class="w3-bar-item w3-button">HOME</a>
+    <a href="#intro" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-globe"></i> MAP</a>
+    <a href="#company" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-bar-chart"></i> MAKE AND MODEL</a>
+    <a href="#damage" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-line-chart"></i> AIRCRAFT DAMAGE</a>
+    <a href="#flight" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-braille"></i> FLIGHT PURPOSE</a>
+
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="#intro" class="w3-bar-item w3-button" onclick="toggleFunction()">MAP</a>
+    <a href="#company" class="w3-bar-item w3-button" onclick="toggleFunction()">MAKE AND MODEL</a>
+    <a href="#damage" class="w3-bar-item w3-button" onclick="toggleFunction()">AIRCRAFT DAMAGE</a>
+    <a href="#flight" class="w3-bar-item w3-button" onclick="toggleFunction()">FLIGHT PURPOSE</a>
+  </div>
+</div>
+
+<!-- First Parallax Image with Text -->
+<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+  <div class="w3-display-middle" style="white-space: nowrap;"><h1><span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">AVIATION ACCIDENT IN NORTH AMERICA
+  </span></h1>
+  </div>
+</div>
+
+<!-- Container (MAP Section) -->
+<div class="w3-content w3-container w3-padding-64" id="intro">
+  <p>This visualisation data is about the National Transportation Safety Board aviation accident. It contains the accident taken from the year between 2000 to 2020 in North America.
+    According to a study published by Boeing Commercial Airplanes, nearly half of all aviation accidents occur during the final approach or landing and 14 percent occur during 
+    takeoff or initial climb. This had shows that the majority of aviation accidents happen on the runway during takeoff or landing, not while the airplane is cruising in the air.
+  </p>
+  <br>
+
+  <!-- Interactive Chart -->
+    <div class="pure-g">
+      <div class="pure-u-1-1"></div>
+      <div class="pure-u-1-1">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+  </div>
+  <!-- end pure grid group -->
+  <p>The map above shows where was the place that occurs the aviation accident and colour density represent the injury severity , the darker the colour means there were more 
+    people fatal in that accident. From the map above, each state had occurred at least one aviation accident. However, the most aviation accident occur in 
+    <span style="color: #ad6751;font-weight:bold;">California</span> where it had <b>2921 cases</b> and <span style="color: #0F344A;font-weight:bold;">1053 people had fatal</span> in the 20 years. 
+    The second higher state is <span style="color: #ad6751;font-weight:bold;">Florida</span> where it had <b>2243 
+      cases</b> and <span style="color: #0F344A;font-weight:bold;">732 people had fatal</span> in the 20 years.
+  </p>
+</div>
+
+
+<!-- Container (Maker and Modal Section) -->
+<div class="w3-row w3-center w3-dark-grey w3-padding-16" id="company">
+  <h3><b>COMMON MAKE AND MODELS IN AVIATION ACCIDENT</b></h3>
+</div>
+
+<!-- Container (body company Section) -->
+<div class="w3-content w3-container w3-padding-64">
+    <p>Based on the left graph, the  <span style="color: #0F344A; font-size:18px ;font-weight:bold;">Cessna</span> – an aviation aircraft manufacturing corporation had the most aviation acciendent in these 20 years.
+      The number of accident is <b>almost doubled</b> for the second place make company - <span style="color: #0F344A; font-size:18px ;font-weight:bold;">Piper</span>. The following is the 
+      <span style="color: #0F344A; font-size:18px ;font-weight:bold;">Beech</span> where the number of accident 
+      is <b>twice less than the Piper</b>. These three manufacturers have historically been the largest producers of aircraft for general aviation purposes – 
+      though both Beech <em>(rename to Beechcraft)</em> and Cessna have since become subsidiaries of Textron Aviation in year 2014.</p>
+    <br>
+
+    <!-- Top k bar chart -->
+    <div class="pure-g">
+      <div class="pure-u-2-3">
+        <div id="vis2"  class="vis-container"></div>
+      </div>
+    <div class="pure-u-1-3"></div>
+  </div>
+  <!-- end pure grid group -->
+  
+  <p><b>Cessna was ranked first</b> because the aviation aircraft they produced <b>ranked seventh out of ten</b> in terms of model ranking. The model was 172, 152, 172S, 172N, 182, 180 and 172M.</p>
+</div>
+
+
+<!-- Container (damage Section) -->
+<div class="w3-content w3-container w3-padding-64" id="damage">
+  <h2 class="w3-center"><b>AIRCRAFT DAMAGE</b></h2>
+
+
+  <!-- pure grid group -->
+  <div class="w3-col m7 w3-center w3-padding-large pure-g">
+    <br>
+    <div class="pure-u-2-3">
+      <div id="vis3"  class="vis-container"></div>
+    </div>
+    <div class="pure-u-1-3"></div>
+  </div>
+  <!-- end pure grid group -->
+
+  <div class="w3-col m5 w3-hide-small w3-padding-large">
+  <p>According to the graph, <b>2003</b> is the year with the highest number of aircraft destroyed. However, it only declined until 2011. <b>2011</b> was the year with the least number of planes destroyed, 
+    it had <b>8 planes</b>, but it rebounded after the year.</p>
+    
+    <p>According to Skybrary, the components that are not included in substantial damage are:</p>
+    <ul> 
+      <li>engine failure or damage limited to an engine only, </li>
+      <li>dented skin, </li>
+      <li>damage to landing gear (to include wheels and tires), </li>
+      <li>flaps,</li>
+      <li>wingtips. </li>
+    </ul>
+
+      <p>Although it does not include those components, there is still a high number in this category. The highest number was in the year <b>2007 with 582 aircraft.</b></p>
+
+    <p>Based on the graph, it shows that there is only a <b>minor chance</b> can let the aircraft had  <span style="color: #bfb6a4;font-weight:bold;">minor damage</span> in the aviation accident.
+       The highest number occurred in <b>2009</b>, where it had only <b>26 aircraft</b> got minor damage.
+    </p>
+  </div>
+</div>
+
+
+<!-- Container (Flight Purpose Section) -->
+<div class="w3-content w3-container w3-padding-64" id="flight">
+  <h2 class="w3-center"><b>FLIGHT PURPOSE</b></h2>
+
+  <!-- Waffle Chart -->
+  <div class="w3-col m7 w3-padding-large pure-g">
+    <div class="pure-u-2-3">
+      <div id="vis4"  class="vis-container"></div>
+    </div>
+    <div class="pure-u-1-3"></div>
+  </div>
+  <!-- end pure grid group -->
+  
+  <div class="w3-col m5 w3-padding-large">  
+    <p>Most of the flight purpose happened in <span style="color: #0E1D35;font-weight:bold;">personal</span> category, where it occupy 
+      <span style="color: #0E1D35;font-weight:bold;">65%</span> in the accident. 
+      The next is <span style="color: #966A2C;font-weight:bold;">instructional</span> with <span style="color: #966A2C;font-weight:bold;">14%</span> , 
+      <span style="color: #8F887F;font-weight:bold;">aerial application</span> is <span style="color: #8F887F;font-weight:bold;">5% </span>
+      where <span style="color: #cb8b72;font-weight:bold;">business</span> purpose occupy the least which is <span style="color: #cb8b72;font-weight:bold;">3%</span>, 
+      and the remaining is <span style="color: #d3c7b1;font-weight:bold;">others</span> purpose. </p>
+  </div>
+
+
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16 w3-opacity w3-hover-opacity-off">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <p> Data Source: <a href="https://www.kaggle.com/khsamaha/aviation-accident-database-synopses" title="Kaggle" target="_blank" class="w3-hover-text-blue-gray">Kaggle</a></p></p>
+  <p><em> Created by Suu Yin Ho <br> FIT3179 Data Visualisation 2</em></p>
+</footer>
+ 
+<script>
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+<!-- chart -->
+<script type="text/javascript">
+  var vg_1 = "js/interative.vg.json";
+  var vg_2 = "js/InteractiveBar.vg.json";
+  var vg_3 = "js/lineChart.vg.json";
+  var vg_4 = "js/waffleChart.vg.json";
+
+  vegaEmbed('#vis1', vg_1, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+   vegaEmbed('#vis2', vg_2, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis3', vg_3, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis4', vg_4, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+</script>
+</body>
+</html>
