@@ -49,7 +49,7 @@
           },
           "legend":{
             "labelFont": "sans-serif",
-            "labelFontSize": 14,
+            "labelFontSize": 10,
             "titleFont":"sans-serif",
             "title": "Flight Purpose",
             "titleFontSize": 16
