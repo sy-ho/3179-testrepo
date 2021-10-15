@@ -51,7 +51,6 @@
             "labelFont": "sans-serif",
             "titleFont":"sans-serif",
             "title": "Flight Purpose",
-            "titleFontSize": 16
           }
         },    "opacity": {
     "condition": {"param": "highlight", "value": 1},
