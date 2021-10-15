@@ -48,9 +48,7 @@
             ]
           },
           "legend":{
-            "labelFont": "sans-serif",
-            "titleFont":"sans-serif",
-            "title": "Flight Purpose",
+            "title": "Flight Purpose"
           }
         },    "opacity": {
     "condition": {"param": "highlight", "value": 1},
