@@ -7,7 +7,10 @@
     {
       "width": 800,
       "height": 400,
-      "title": "Where Did the Aviation Accident Occur?",
+      "title": {
+        "text":"Where Did the Aviation Accident Occur?",
+          "fontSize": 20
+},
       "projection": {"type": "equalEarth"},
       "layer": [
         {
@@ -61,7 +64,8 @@
                 }
 
               ],
-              "mark": {"type": "text","dx":-150,"dy":-150},
+              "mark": {"type": "text","dx":-100,"dy":-50,
+              "fontWeight": "bold"},
              "encoding": {"text": {"field": "text_annotation"},"color":{"value":"black"}}
             }
         
@@ -73,7 +77,9 @@
       "width": 800,
       "height": 60,
       "mark": "line",
-      "title": "Filter out the data based on Year",
+      "title": {"text":"Filter out the data based on Year",
+          "fontSize": 14          
+      },
       "params": [
         {
           "name": "time_brush",
@@ -132,6 +138,5 @@
         }
       }
     }
-  ],
-  "config": {"title": {"font": "sans-serif", "fontSize": 18}}
+  ]
 }
