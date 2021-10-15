@@ -50,18 +50,21 @@
             {
               "transform": [
                 {
-                  "window": [{"op": "rank", "as": "ranking"}],
+                  "window": [{"op": "row_number", "as": "ranking"}],
                   "sort": [{"field": "Severality_Score", "order": "descending"}]
                 },
-                {"filter": "datum.ranking == 1"},
+
+               {"filter": "datum.ranking == 1"},
                 {
-                  "calculate": "'The highest severity score of the selected period: ' + datum['Severality_Score']",
+                  "calculate": "'The highest severity score: ' + datum['Severality_Score']",
                   "as": "text_annotation"
                 }
+
               ],
-              "mark": {"type": "text", "align": "left", "dx": 4},
-              "encoding": {"text": {"field": "text_annotation"}}
+              "mark": {"type": "text","dx":-150,"dy":-150},
+             "encoding": {"text": {"field": "text_annotation"},"color":{"value":"black"}}
             }
+        
           ]
         }
       ]
@@ -130,5 +133,5 @@
       }
     }
   ],
-  "config": {"title": {"font": "sans-serif", "fontSize": 14}}
+  "config": {"title": {"font": "sans-serif", "fontSize": 18}}
 }
