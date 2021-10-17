@@ -99,7 +99,7 @@
           "aggregate": "count",
           "axis": {"tickCount": 3, "grid": false},
           "scale": {"domain": [0, 100]},
-          "title": "Count"
+          "title": "Number of Accident"
         }
       }
     },
@@ -123,7 +123,7 @@
           "scale": {"domain": {"param": "time_brush"}},
           "axis": {"title": "", "tickCount": 5, "grid": false}
         },
-        "y": {"aggregate": "count", "title": "Count"},
+        "y": {"aggregate": "count", "title": "Number of Accident"},
         "tooltip":[
         {"field": "Event_Date", "timeUnit": "yearmonth", "type": "ordinal","title":"Date"},
         {"field": "magnitude",  "type": "ordinal","title":"Severity class"},
