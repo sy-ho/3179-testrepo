@@ -12,7 +12,6 @@
 <!-- Import css -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- Google font -->
@@ -35,13 +34,13 @@
     
   }
   h3{
-    font-weight: 500;
+    font-weight: 400;
     text-align: center;
     font-size: 25px;
     
   }
   p{
-    font-size: 16px;
+    font-size: 14px;
   }
   .vis-container{
 	width: 100%;
@@ -68,6 +67,46 @@ body, html {
 }
 .wrap {
   word-wrap: break-word;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  color: rgb(12, 12, 12);
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 75%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .w3-wide {letter-spacing: 10px;}
@@ -117,8 +156,9 @@ body, html {
 <!-- Container (MAP Section) -->
 <div class="w3-content w3-container w3-padding-64" id="intro">
   <p>This visualisation data is about the National Transportation Safety Board aviation accident which taken from the year between 2000 to 2020 in North America.
-    According to a study published by Boeing Commercial Airplanes, <span style="color: #08090a;font-weight:bold;">nearly half of all aviation accidents occur during the final approach or 
-landing and 14% occur during takeoff or initial climb</span>. This had shown that the majority of aviation accidents happen on the runway during takeoff or landing, not while the aircraft is cruising in the air.
+    According to Baum Hedlund, Boeing Commercial Airplanes had published a study and state that <span style="color: #08090a;font-weight:bold;">over half of all aircraft 
+      accidents occur during final approach or landing, and 14% occur during takeoff or initial climb</span>. This had shown that the majority of aviation accidents happen on 
+      the runway during takeoff or landing, not while the aircraft is cruising in the air.
   </p>
   <br>
 
@@ -131,8 +171,9 @@ landing and 14% occur during takeoff or initial climb</span>. This had shown tha
   </div>
   <!-- end pure grid group -->
   <p>From the map above, it is shown that each state had occurred at least one aviation accident. However, most of the accidents occur in 
-    <span style="color: #ad6751;font-weight:bold;">California</span> where it had <b>2921 cases</b> and <span style="color: #0F344A;font-weight:bold;">1053 people had fatal</span> in the 20 years. 
-    The second higher state is <span style="color: #ad6751;font-weight:bold;">Florida</span> where it had <b>2243 
+    <span style="color: #ad6751;font-weight:bold;font-size:18px;">California</span> where it had <b>2921 cases</b> and 
+    <span style="color: #0F344A;font-weight:bold;">1053 people had fatal</span> in the 20 years. 
+    The second higher state is <span style="color: #ad6751;font-weight:bold;font-size:18px ;">Florida</span> where it had <b>2243 
       cases</b> and <span style="color: #0F344A;font-weight:bold;">732 people had fatal</span> in the 20 years.
   </p>
 </div>
@@ -181,10 +222,12 @@ landing and 14% occur during takeoff or initial climb</span>. This had shown tha
   <!-- end pure grid group -->
 
   <div class="w3-col m4 w3-hide-small w3-padding-large">
-  <p>According to the graph, <b>2003</b> was the year with the highest number of aircraft destroyed and <b>2011</b> was the year with the least number.
+  <p>According to the graph,  <span style="color: #0F344A; font-size:16px;font-weight:bold;">2003</span> was the year with the highest number of aircraft destroyed 
+    and  <span style="color: #0F344A; font-size:16px ;font-weight:bold;"> 2011</span> was the year with the least number.
 
-    <p>The graph also had shown that there is only a <b>minor chance</b> can let the aircraft had  <span style="color: #bfb6a4;font-weight:bold;">minor damage</span> in the aviation accident.
-       The highest number occurred in <b>2009</b>, where it had only <b>26 aircraft</b>.
+    <p>The graph also had shown that there is only a  <span style="color: #bfb6a4; font-size:18px;font-weight:bold;">minor chance</span> can let the aircraft had  
+      <span style="color: #bfb6a4;font-size:18px;font-weight:bold;">minor damage</span> in the aviation accident.
+       The highest number occurred in <span style="color: #bfb6a4; font-size:16px;font-weight:bold;">2009</span>, where it had only <b>26 aircraft</b>.
     </p>
   </div>
 </div>
@@ -204,12 +247,12 @@ landing and 14% occur during takeoff or initial climb</span>. This had shown tha
   <!-- end pure grid group -->
   
   <div class="w3-col m4 w3-padding-large">  
-    <p>The majority of the flight purpose happened in the <span style="color: #0E1D35;font-weight:bold;">personal</span> category, where it occupied  
-      <span style="color: #0E1D35;font-weight:bold;">65%</span> in the accident. 
-      The next is <span style="color: #966A2C;font-weight:bold;">instructional</span> with <span style="color: #966A2C;font-weight:bold;">14%</span> , 
-      <span style="color: #8F887F;font-weight:bold;">aerial application</span> is <span style="color: #8F887F;font-weight:bold;">5% </span>
-      where <span style="color: #cb8b72;font-weight:bold;">business</span> purpose occupies the least which is <span style="color: #cb8b72;font-weight:bold;">3%</span>, 
-      and the rest is for <span style="color: #d3c7b1;font-weight:bold;">others</span> purpose. </p>
+    <p>The majority of the flight purpose happened in the <span style="color: #0E1D35;font-weight:bold;font-size:18px;">personal</span> category, where it occupied  
+      <span style="color: #0E1D35;font-weight:bold;font-size:15px;">65%</span> in the accident. 
+      The next is <span style="color: #966A2C;font-weight:bold;font-size:18px;">instructional</span> with <span style="color: #966A2C;font-weight:bold;font-size:15px;">14%</span> , 
+      <span style="color: #8F887F;font-weight:bold;font-size:18px;">aerial application</span> is <span style="color: #8F887F;font-weight:bold;font-size:16px;">5% </span>
+      where <span style="color: #cb8b72;font-weight:bold;font-size:18px;">business</span> purpose occupies the least which is <span style="color: #cb8b72;font-size:15px;font-weight:bold;">3%</span>, 
+      and the rest is for <span style="color: #d3c7b1;font-weight:bold;font-size:18px;">others</span> purpose. </p>
   </div>
 
 
@@ -219,8 +262,44 @@ landing and 14% occur during takeoff or initial climb</span>. This had shown tha
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-16 w3-opacity w3-hover-opacity-off">
   <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-  <p> Data Source: <a style="text-decoration:none" href="https://www.kaggle.com/khsamaha/aviation-accident-database-synopses" title="Kaggle" target="_blank" class="w3-hover-text-blue-gray">Kaggle</a></p>
+  
   <p><em> Created by  <a style="text-decoration:none" href="https://github.com/sy-ho/vega_lite/tree/main/Project2" target="_blank" class="w3-hover-text-blue-gray">Suu Yin Ho</a> for FIT3179 Data Visualisation 2</em></p>
+  <!-- Trigger/Open The Modal -->
+  <button id="myBtn"><i class="fa fa-book w3-margin-right"></i>References </button>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+   <!-- Modal content -->
+   <div class="modal-content">
+    <span class="close">&times;</span>
+    <p style = "text-align: center;"><span style="font-weight:bold;font-style:italic;"> References </span></p>  
+    <p>Baum Hedlund.(n.d.) Airport Runway Accidents. Retrieved from</p> 
+      <p>&emsp;https://www.baumhedlundlaw.com/aviation-accident/airport-runway-accidents/</p>
+      <br>
+      
+    <p>Datahub.(2019). Country and Continent Codes List [Data file]. Retrieved from</p> 
+       <p>&emsp;https://datahub.io/JohnSnowLabs/country-and-continent-codes-list#data</p>
+      <br>
+      
+    <p>Fiegl, J. (2019).  Second Class Project for Statistical Methods I. Retrieved from</p>
+      <p>&emsp;http://rstudio-pubs-static.s3.amazonaws.com/466540_2da8a1bc8b
+      6542a4ba49399bc4d66af6.html</p>
+      <br>
+      
+    <p>Samaha, K. (2021). Aviation Accident Database & Synopses [Data file]. Retrieved from </p>
+        <p>&emsp;https://www.kaggle.com/khsamaha/aviation-accident-database-synopses</p>
+      <br>
+      
+    <p>Ujvari, B.(2015). Photoshop Speed Art - Plane Crash  [photograph]. Retrieved from </p>
+      <p>&emsp;https://vimeo.com/117673909</p>
+      <br>
+      
+    <p>W3schools. (n.d.). Parallex Template [HTML template]. Retrieved from</p> 
+      <p>&emsp;https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_parallax&stacked=h</p>
+      
+  </div>
+</div>
 </footer>
  
 <script>
@@ -234,6 +313,32 @@ function myFunction() {
     } else {
         navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
     }
+}
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
 // Used to toggle the menu on small screens when clicking on the menu button
